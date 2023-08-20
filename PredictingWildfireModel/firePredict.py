@@ -3,12 +3,11 @@ import tensorflow as tf
 from PIL import Image
 import matplotlib.pyplot as plt
 
-# Define paths to your dataset folders
 train_dir = '/Users/kushalb/Downloads/fireData/train'
 validation_dir = '/Users/kushalb/Downloads/fireData/valid'
 test_dir = '/Users/kushalb/Downloads/fireData/test'
 
-# Set image dimensions and other parameters
+# image dimensions and other params
 img_width, img_height = 350, 350
 batch_size = 64
 epochs = 1
@@ -50,7 +49,7 @@ test_generator = test_datagen.flow_from_directory(
 
 sample_images, sample_labels = next(train_generator)
 
-# Display the images in the batch
+#Displaying the images in the batch
 plt.figure(figsize=(10, 10))
 for i in range(len(sample_images)):
     plt.subplot(8, 8, i+1)
@@ -59,7 +58,7 @@ for i in range(len(sample_images)):
     plt.axis('off')
 plt.show()
 
-# Build the model
+#Building the model....
 model = tf.keras.models.Sequential([
     tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(img_width, img_height, 3)),
     tf.keras.layers.MaxPooling2D((2, 2)),
@@ -69,8 +68,8 @@ model = tf.keras.models.Sequential([
     tf.keras.layers.MaxPooling2D((2, 2)),
     tf.keras.layers.Flatten(),
     tf.keras.layers.Dense(128, activation='relu'),
-    tf.keras.layers.Dropout(0.5),  # Add dropout for regularization
-    tf.keras.layers.Dense(1, activation='sigmoid')  # Using sigmoid for binary classification
+    tf.keras.layers.Dropout(0.5),  # Dropout
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Sigmoid > softmax here
 ])
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -78,7 +77,7 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 # Train the model
 model.fit(train_dir, validation_data=validation_dir, epochs=epochs)
 
-# Make predictions on new images
+# Make predictions on test
 def predict_wildfire(image_path):
     img = Image.open(image_path)
     img = img.resize((img_width, img_height))
