@@ -25,7 +25,7 @@ def remove_files(file_paths):
         except Exception as e:
             print(f"Error removing {file_path}: {e}")
 
-image_root_directory = '/Users/kushalb/Downloads/fireData/test/wildfire'
+image_root_directory = 'folder/with/all/the/images/to/test'
 
 corrupted_images = check_for_corrupted_images(image_root_directory)
 
