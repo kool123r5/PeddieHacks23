@@ -3,9 +3,9 @@ import tensorflow as tf
 from PIL import Image
 import matplotlib.pyplot as plt
 
-train_dir = '/Users/kushalb/Downloads/fireData/train'
-validation_dir = '/Users/kushalb/Downloads/fireData/valid'
-test_dir = '/Users/kushalb/Downloads/fireData/test'
+train_dir = 'training/data/dir'
+validation_dir = 'valid/data/dir'
+test_dir = 'test/data/dir'
 
 # image dimensions and other params
 img_width, img_height = 350, 350
@@ -89,12 +89,12 @@ def predict_wildfire(image_path):
     else:
         return "No Wildfire"
 
-new_image_path = '/Users/kushalb/Downloads/fireData/train/wildfire/-79.70618,48.94454.jpg'
+new_image_path = 'new/img/path/xd'
 prediction = predict_wildfire(new_image_path)
 print(f"The image is classified as: {prediction}")
 
-image_path_agn = '/Users/kushalb/Downloads/fireData/test/nowildfire/-79.744402,43.689693.jpg'
+image_path_agn = 'another/one'
 prediction = predict_wildfire(image_path_agn)
 print(f"The image is classified as: {prediction}")
 
-model.save('firePredict.h5')
+model.save('saved/model/path.h5')
