@@ -8,6 +8,7 @@ def check_for_corrupted_images(directory):
         for filename in filenames:
             file_path = os.path.join(root, filename)
             try:
+                #some guys scammed us kinda
                 img = Image.open(file_path)
                 img.load()
             except Exception as e:
@@ -23,7 +24,7 @@ def remove_files(file_paths):
             print(f"Removed: {file_path}")
         except Exception as e:
             print(f"Error removing {file_path}: {e}")
-# Specify the root directory containing your images
+
 image_root_directory = '/Users/kushalb/Downloads/fireData/test/wildfire'
 
 corrupted_images = check_for_corrupted_images(image_root_directory)
